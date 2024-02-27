@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      containers:
+      - name: minio
+        image: minio/minio:latest
+        args:
+        - server
+        - /data
+        env:
+        - name: MINIO_ROOT_USER
+          value: "15fb4c4195579612fb5259f95f9195be"
+        - name: MINIO_ROOT_PASSWORD
+          value: "8f4fe1bf54c3efe2e7938e5c6c73c43ee36be38090679e13b627c2fcd58b3eb4"
+        ports:
+        - containerPort: 9000
+      volumes:
+      - name: minio-data
+        emptyDir: {}
+    
+

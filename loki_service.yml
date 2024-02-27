@@ -1,0 +1,15 @@
+# loki-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: loki
+spec:
+  type: NodePort
+  ports:
+  - port: 3100
+    targetPort: 3100
+    nodePort: 31000
+  selector:
+    app: loki
+
+
